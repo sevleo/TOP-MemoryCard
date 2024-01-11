@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 
-export default function PokeAPI() {
-  const getPokemonsUrl = "https://pokeapi.co/api/v2/pokemon/?limit=649";
-
+export default function PokeAPI({
+  getPokemonsUrl,
+  gameSetSize,
+  setPokemonsDetails,
+}) {
   // Number of pokemons used in a single game
-  const pokemonGameSetSize = 20;
+  const pokemonGameSetSize = gameSetSize;
 
   // All pokemons from API
   const [pokemons, setPokemons] = useState([]);
 
   // A subset of pokemons picked randomly for a given game
   const [pokemonGameSet, setPokemonGameSet] = useState([]);
-
-  // A subset of pokemons with details
-  const [pokemonsDetails, setPokemonsDetails] = useState([]);
 
   // Fetch all pokemons from the database
   useEffect(() => {
@@ -27,7 +26,7 @@ export default function PokeAPI() {
       }
     };
     fetchData();
-  }, []);
+  }, [getPokemonsUrl]);
 
   // When pokemons are fetched, select random pokemons for the game
   useEffect(() => {
@@ -45,7 +44,7 @@ export default function PokeAPI() {
     );
 
     setPokemonGameSet(newPokemonGameSet);
-  }, [pokemons]);
+  }, [pokemons, pokemonGameSetSize]);
 
   // When random pokemons are selected, fetch details about them
   useEffect(() => {
@@ -86,11 +85,6 @@ export default function PokeAPI() {
 
     fetchData();
   }, [pokemonGameSet]);
-
-  // When details about pokemons are available...
-  useEffect(() => {
-    console.log(pokemonsDetails);
-  }, [pokemonsDetails]);
 
   return <div className="card-getter"></div>;
 }
