@@ -3,20 +3,24 @@ import PokeAPI from "./components/PokeAPI";
 import "./index.css";
 
 function App() {
-  const getPokemonsUrl = "https://pokeapi.co/api/v2/pokemon/?limit=649";
+  const url = "https://pokeapi.co/api/v2/pokemon/?limit=649";
 
   // Number of pokemons used in a single game
-  const pokemonGameSetSize = 20;
+  const setSize = 20;
 
   // A subset of pokemons with details
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
+
+  useEffect(() => {
+    console.log(pokemonsDetails);
+  }, [pokemonsDetails]);
 
   return (
     <>
       <main>
         <PokeAPI
-          getPokemonsUrl={getPokemonsUrl}
-          gameSetSize={pokemonGameSetSize}
+          url={url}
+          setSize={setSize}
           setPokemonsDetails={setPokemonsDetails}
         />
       </main>

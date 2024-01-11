@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 
-export default function PokeAPI({
-  getPokemonsUrl,
-  gameSetSize,
-  setPokemonsDetails,
-}) {
-  // Number of pokemons used in a single game
-  const pokemonGameSetSize = gameSetSize;
-
+export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
   // All pokemons from API
   const [pokemons, setPokemons] = useState([]);
 
   // A subset of pokemons picked randomly for a given game
   const [pokemonGameSet, setPokemonGameSet] = useState([]);
 
-  // Fetch all pokemons from the database
+  // Fetch all pokemons from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const urlResponse = await fetch(getPokemonsUrl);
+        const urlResponse = await fetch(url);
         const pokemonData = await urlResponse.json();
         setPokemons(pokemonData.results);
       } catch (error) {
@@ -26,22 +19,22 @@ export default function PokeAPI({
       }
     };
     fetchData();
-  }, [getPokemonsUrl]);
+  }, [url]);
 
   // When pokemons are fetched, select random pokemons for the game
   useEffect(() => {
-    const pokemonGameSetIndices = [];
-    while (pokemonGameSetIndices.length < pokemonGameSetSize) {
+    const randomIndices = [];
+
+    // Generate random indices
+    while (randomIndices.length < setSize) {
       const randomDecimal = Math.random();
       const randomNumber = Math.floor(randomDecimal * 649);
-      if (!pokemonGameSetIndices.includes(randomNumber)) {
-        pokemonGameSetIndices.push(randomNumber);
+      if (!randomIndices.includes(randomNumber)) {
+        randomIndices.push(randomNumber);
       }
     }
 
-    const newPokemonGameSet = pokemonGameSetIndices.map(
-      (index) => pokemons[index],
-    );
+    const newPokemonGameSet = randomIndices.map((index) => pokemons[index]);
 
     setPokemonGameSet(newPokemonGameSet);
   }, [pokemons]);
@@ -55,7 +48,7 @@ export default function PokeAPI({
     };
 
     // Fetch data
-    const fetchData = async () => {
+    const fetchDetailsData = async () => {
       const promises = [];
       if (pokemonGameSet) {
         pokemonGameSet.forEach((pokemon) => {
@@ -84,7 +77,7 @@ export default function PokeAPI({
       setPokemonsDetails(newPokemonsDetails);
     };
 
-    fetchData();
+    fetchDetailsData();
   }, [pokemonGameSet]);
 
   return <div className="card-getter"></div>;
