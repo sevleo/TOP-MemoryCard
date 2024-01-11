@@ -17,7 +17,6 @@ function App() {
         <PokeAPI
           getPokemonsUrl={getPokemonsUrl}
           gameSetSize={pokemonGameSetSize}
-          pokemonsDetails={pokemonsDetails}
           setPokemonsDetails={setPokemonsDetails}
         />
       </main>

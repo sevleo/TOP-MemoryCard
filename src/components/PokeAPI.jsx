@@ -44,7 +44,7 @@ export default function PokeAPI({
     );
 
     setPokemonGameSet(newPokemonGameSet);
-  }, [pokemons, pokemonGameSetSize]);
+  }, [pokemons]);
 
   // When random pokemons are selected, fetch details about them
   useEffect(() => {
