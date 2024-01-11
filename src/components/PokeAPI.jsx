@@ -80,6 +80,7 @@ export default function PokeAPI({
         newPokemonsDetails.push(newPokemonDetails);
       });
 
+      // Return data to App.jsx
       setPokemonsDetails(newPokemonsDetails);
     };
 
