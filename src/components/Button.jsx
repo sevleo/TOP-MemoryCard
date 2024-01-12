@@ -1,6 +1,6 @@
-export default function Button({ onClick }) {
+export default function Button({ onClick, buttonName }) {
   function handleButtonClick() {
-    onClick()
+    onClick();
   }
-  return <button onClick={handleButtonClick}>Start Game</button>
+  return <button onClick={handleButtonClick}>{buttonName}</button>;
 }

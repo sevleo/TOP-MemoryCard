@@ -4,10 +4,16 @@ export default function Card({
   image,
   showGameboard,
   clickable,
+  onClick,
 }) {
+  function handleClick() {
+    onClick();
+  }
+
   return (
     <div
       key={keyValue}
+      onClick={handleClick}
       className="flex h-64 w-56 flex-col items-center justify-center bg-slate-400"
     >
       <p
@@ -22,5 +28,5 @@ export default function Card({
         }`}
       />
     </div>
-  )
+  );
 }

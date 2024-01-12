@@ -23,7 +23,6 @@ function App() {
 
   // Generate a subset of pokemons for the first round
   useEffect(() => {
-    console.log(gamePokemonSet);
     const newRoundPokemonSet = generateRandomPokemonSet(
       roundSize,
       setSize,
@@ -36,7 +35,6 @@ function App() {
 
   // Allow board only when all pokemon data is initialized
   useEffect(() => {
-    console.log(roundPokemonSet);
     if (roundPokemonSet[0] !== undefined) setDrawBoardAllowed(true);
   }, [roundPokemonSet]);
 
@@ -48,6 +46,11 @@ function App() {
     setClickable(true);
   };
 
+  const logPokemons = () => {
+    console.log(gamePokemonSet);
+    console.log(roundPokemonSet);
+  };
+
   // Controlling when cards are clickable
   const [clickable, setClickable] = useState(false);
 
@@ -55,7 +58,8 @@ function App() {
     <>
       <main>
         <div className="mb-2.5 flex h-24 justify-center">
-          <Button onClick={startGame} />
+          <Button onClick={startGame} buttonName="Start Game" />
+          <Button onClick={logPokemons} buttonName="Log" />
         </div>
         <PokeAPI
           url={url}

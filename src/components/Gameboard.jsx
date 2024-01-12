@@ -1,7 +1,17 @@
 import Card from "./Card";
 
 export default function Gameboard({ pokemons, showGameboard, clickable }) {
-  console.log(pokemons);
+  pokemons.forEach((pokemon) => {
+    pokemon.seen = true;
+  });
+
+  function handleCardClick(clickedPokemon) {
+    if (clickable) {
+      clickedPokemon.selected = true;
+      console.log(clickedPokemon);
+    }
+  }
+
   return (
     <>
       <div className="flex flex-wrap justify-center gap-2 ">
@@ -12,6 +22,7 @@ export default function Gameboard({ pokemons, showGameboard, clickable }) {
             image={pokemon.image}
             showGameboard={showGameboard}
             clickable={clickable}
+            onClick={() => handleCardClick(pokemon)}
           />
         ))}
       </div>
