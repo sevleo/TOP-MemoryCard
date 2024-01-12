@@ -9,6 +9,7 @@ function App() {
 
   // Number of pokemons used in a single game
   const setSize = 20
+  const roundSize = 8
 
   // A subset of pokemons with details
   const [pokemonsDetails, setPokemonsDetails] = useState([])
