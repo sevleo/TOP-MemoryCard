@@ -1,4 +1,4 @@
-import Card from "./Card"
+import Card from "./Card";
 
 export default function Gameboard({ pokemons, showGameboard, clickable }) {
   return (
@@ -15,5 +15,5 @@ export default function Gameboard({ pokemons, showGameboard, clickable }) {
         ))}
       </div>
     </>
-  )
+  );
 }

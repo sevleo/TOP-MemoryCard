@@ -3,16 +3,17 @@ export default function generateRandomPokemonSet(
   maxValue,
   originalPokemonSet
 ) {
-  const randomIndices = []
+  const randomIndices = [];
 
   // Generate random indices
   while (randomIndices.length < setSize) {
-    const randomDecimal = Math.random()
-    const randomNumber = Math.floor(randomDecimal * maxValue)
+    const randomDecimal = Math.random();
+    const randomNumber = Math.floor(randomDecimal * maxValue);
     if (!randomIndices.includes(randomNumber)) {
-      randomIndices.push(randomNumber)
+      randomIndices.push(randomNumber);
     }
   }
   // Return pokemons matching random indices
-  return randomIndices.map((index) => originalPokemonSet[index])
+  const newPokemonSet = randomIndices.map((index) => originalPokemonSet[index]);
+  return newPokemonSet;
 }

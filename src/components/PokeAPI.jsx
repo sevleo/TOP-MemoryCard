@@ -1,56 +1,62 @@
-import { useEffect, useState } from "react"
-import generateRandomPokemonSet from "./generateRandomPokemonSet"
+import { useEffect, useState } from "react";
+import generateRandomPokemonSet from "./generateRandomPokemonSet";
 
-export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
+export default function PokeAPI({ url, setSize, setGamePokemonSet }) {
   // All pokemons from API
-  const [pokemons, setPokemons] = useState([])
+  const [pokemonsCatalog, setPokemonsCatalog] = useState([]);
 
   // A subset of pokemons picked randomly for a given game
-  const [pokemonGameSet, setPokemonGameSet] = useState([])
+  // Unstripped
+  const [gamePokemonSetUnstripped, setGamePokemonSetUnstripped] = useState([]);
 
   // Fetch all pokemons from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const urlResponse = await fetch(url)
-        const pokemonData = await urlResponse.json()
-        setPokemons(pokemonData.results)
+        const urlResponse = await fetch(url);
+        const pokemonData = await urlResponse.json();
+        setPokemonsCatalog(pokemonData.results);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
-    fetchData()
-  }, [url])
+    };
+    fetchData();
+  }, [url]);
 
-  // When pokemons are fetched, select random pokemons for the game
+  // When pokemonsCatalog are fetched, select random pokemons for the game
   useEffect(() => {
-    const newPokemonGameSet = generateRandomPokemonSet(setSize, 649, pokemons)
-    setPokemonGameSet(newPokemonGameSet)
-  }, [pokemons, setSize])
+    const newPokemonGameSet = generateRandomPokemonSet(
+      setSize,
+      649,
+      pokemonsCatalog
+    );
+    setGamePokemonSetUnstripped(newPokemonGameSet);
+  }, [pokemonsCatalog, setSize]);
 
   // When random pokemons are selected, fetch details about them
   useEffect(() => {
     const fetchPokemonData = async (url) => {
-      const response = await fetch(url)
-      const data = await response.json()
-      return data
-    }
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    };
 
     // Fetch data
     const fetchDetailsData = async () => {
-      const promises = []
-      if (pokemonGameSet) {
-        pokemonGameSet.forEach((pokemon) => {
+      const promises = [];
+      if (gamePokemonSetUnstripped) {
+        gamePokemonSetUnstripped.forEach((pokemon) => {
           if (pokemon) {
-            promises.push(fetchPokemonData(pokemon.url))
+            promises.push(fetchPokemonData(pokemon.url));
           }
-        })
+        });
       }
 
-      const pokemonDataArray = await Promise.all(promises)
+      // Details about pokemons
+      const pokemonDataArray = await Promise.all(promises);
 
       // Strip data
-      const newPokemonsDetails = []
+      const gamePokemonSetStripped = [];
       pokemonDataArray.forEach((pokemon) => {
         const newPokemonDetails = {
           key: Math.random(),
@@ -58,17 +64,17 @@ export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
           image: "",
           seen: false,
           selected: false,
-        }
-        newPokemonDetails.name = pokemon.name
+        };
+        newPokemonDetails.name = pokemon.name;
         newPokemonDetails.image =
-          pokemon.sprites.other.dream_world.front_default
-        newPokemonsDetails.push(newPokemonDetails)
-      })
+          pokemon.sprites.other.dream_world.front_default;
+        gamePokemonSetStripped.push(newPokemonDetails);
+      });
 
       // Return data to App.jsx
-      setPokemonsDetails(newPokemonsDetails)
-    }
+      setGamePokemonSet(gamePokemonSetStripped);
+    };
 
-    fetchDetailsData()
-  }, [pokemonGameSet, setPokemonsDetails])
+    fetchDetailsData();
+  }, [gamePokemonSetUnstripped, setGamePokemonSet]);
 }
