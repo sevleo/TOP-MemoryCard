@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <main>
-        <div className="mb-2.5 h-24">
+        <div className="mb-2.5 flex h-24 justify-center">
           <Button onClick={startGame} />
         </div>
         <PokeAPI
