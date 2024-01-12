@@ -59,11 +59,11 @@ export default function PokeAPI({ url, setSize, setGamePokemonSet }) {
       const gamePokemonSetStripped = [];
       pokemonDataArray.forEach((pokemon) => {
         const newPokemonDetails = {
+          seen: false,
+          selected: false,
           key: Math.random(),
           name: "",
           image: "",
-          seen: false,
-          selected: false,
         };
         newPokemonDetails.name = pokemon.name;
         newPokemonDetails.image =
