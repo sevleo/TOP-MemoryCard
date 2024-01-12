@@ -18,11 +18,16 @@ function App() {
     console.log(pokemonsDetails)
   }, [pokemonsDetails])
 
+  // Controlling start game
   const [showGameboard, setShowGameboard] = useState(false)
 
   const startGame = () => {
     setShowGameboard(true)
+    setClickable(true)
   }
+
+  // Controlling when cards are clickable
+  const [clickable, setClickable] = useState(false)
 
   return (
     <>
@@ -36,7 +41,11 @@ function App() {
           setPokemonsDetails={setPokemonsDetails}
         />
         {/* {showGameboard ? <Gameboard pokemons={pokemonsDetails} /> : null} */}
-        <Gameboard pokemons={pokemonsDetails} showGameboard={showGameboard} />
+        <Gameboard
+          pokemons={pokemonsDetails}
+          showGameboard={showGameboard}
+          clickable={clickable}
+        />
       </main>
     </>
   )
