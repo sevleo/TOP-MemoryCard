@@ -544,6 +544,14 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
 .flex {
   display: flex;
 }
@@ -558,6 +566,10 @@ video {
 
 .h-64 {
   height: 16rem;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .w-44 {
@@ -596,6 +608,10 @@ video {
 .object-fill {
   -o-object-fit: fill;
      object-fit: fill;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 :root {
