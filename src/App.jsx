@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PokeAPI from "./components/PokeAPI";
+import Gameboard from "./components/Gameboard";
 import "./index.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           setSize={setSize}
           setPokemonsDetails={setPokemonsDetails}
         />
+        <Gameboard pokemons={pokemonsDetails} />
       </main>
     </>
   );

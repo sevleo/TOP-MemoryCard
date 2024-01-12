@@ -37,7 +37,7 @@ export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
     const newPokemonGameSet = randomIndices.map((index) => pokemons[index]);
 
     setPokemonGameSet(newPokemonGameSet);
-  }, [pokemons]);
+  }, [pokemons, setSize]);
 
   // When random pokemons are selected, fetch details about them
   useEffect(() => {
@@ -64,8 +64,11 @@ export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
       const newPokemonsDetails = [];
       pokemonDataArray.forEach((pokemon) => {
         const newPokemonDetails = {
+          key: Math.random(),
           name: "",
           image: "",
+          seen: false,
+          selected: false,
         };
         newPokemonDetails.name = pokemon.name;
         newPokemonDetails.image =
@@ -78,7 +81,5 @@ export default function PokeAPI({ url, setSize, setPokemonsDetails }) {
     };
 
     fetchDetailsData();
-  }, [pokemonGameSet]);
-
-  return <div className="card-getter"></div>;
+  }, [pokemonGameSet, setPokemonsDetails]);
 }
