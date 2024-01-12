@@ -68,9 +68,15 @@ function App() {
         />
         {drawBoardAllowed ? (
           <Gameboard
-            pokemons={roundPokemonSet}
+            roundPokemonSet={roundPokemonSet}
             showGameboard={showGameboard}
+            setShowGameboard={setShowGameboard}
             clickable={clickable}
+            setClickable={setClickable}
+            gamePokemonSet={gamePokemonSet}
+            roundSize={roundSize}
+            setSize={setSize}
+            setRoundPokemonSet={setRoundPokemonSet}
           />
         ) : null}
       </main>
