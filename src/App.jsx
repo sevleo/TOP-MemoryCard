@@ -15,7 +15,7 @@ function App() {
   const roundSize = 8;
 
   // A subset of pokemons for the game
-  // With details about pokemons
+  // Stripped
   const [gamePokemonSet, setGamePokemonSet] = useState([]);
 
   // A subset of pokemons for the current round
@@ -32,9 +32,12 @@ function App() {
     setRoundPokemonSet(newRoundPokemonSet);
   }, [gamePokemonSet]);
 
-  // Log pokemon set for the current round to the console
+  const [drawBoardAllowed, setDrawBoardAllowed] = useState(false);
+
+  // Allow board only when all pokemon data is initialized
   useEffect(() => {
     console.log(roundPokemonSet);
+    if (roundPokemonSet[0] !== undefined) setDrawBoardAllowed(true);
   }, [roundPokemonSet]);
 
   // Controlling start game
@@ -59,11 +62,13 @@ function App() {
           setSize={setSize}
           setGamePokemonSet={setGamePokemonSet}
         />
-        <Gameboard
-          pokemons={gamePokemonSet}
-          showGameboard={showGameboard}
-          clickable={clickable}
-        />
+        {drawBoardAllowed ? (
+          <Gameboard
+            pokemons={roundPokemonSet}
+            showGameboard={showGameboard}
+            clickable={clickable}
+          />
+        ) : null}
       </main>
     </>
   );

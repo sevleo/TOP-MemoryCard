@@ -1,6 +1,7 @@
 import Card from "./Card";
 
 export default function Gameboard({ pokemons, showGameboard, clickable }) {
+  console.log(pokemons);
   return (
     <>
       <div className="flex flex-wrap justify-center gap-2 ">
