@@ -11,7 +11,7 @@ function App() {
   const [fetchData, setFetchData] = useState(true);
 
   // Number of pokemons used in a single game
-  const setSize = 50;
+  const setSize = 60;
 
   // Number of pokemons displayed in a round
   const roundSize = 8;

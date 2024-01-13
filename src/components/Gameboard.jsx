@@ -52,7 +52,8 @@ export default function Gameboard({
 
         if (newPokemons.length > 0) {
           const randomNewCards = generateRandomPokemonSet(
-            2,
+            // newPokemons.length === 1 ? 1 : 2,
+            1,
             newPokemons.length,
             newPokemons
           );
@@ -63,7 +64,7 @@ export default function Gameboard({
           });
 
           const randomSelectedCards = generateRandomPokemonSet(
-            1,
+            selectedPokemons.length < 4 ? selectedPokemons.length : 3,
             selectedPokemons.length,
             selectedPokemons
           );
@@ -78,7 +79,7 @@ export default function Gameboard({
           });
 
           const randomSeenCards = generateRandomPokemonSet(
-            roundSize - 3,
+            roundSize - randomSelectedCards.length - randomNewCards.length,
             seenPokemons.length,
             seenPokemons
           );
