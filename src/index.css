@@ -64,6 +64,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@media screen and (width < 600px) {
+  main > div:nth-child(2) {
+    flex-shrink: 1;
+    width: 100%;
+  }
+
+  main > div:nth-child(2) > div {
+    flex-shrink: 1;
+    width: 150px;
+    height: 130px;
+  }
+
+  main > div:nth-child(2) > div > img {
+    width: 60%;
+    height: 60%;
+  }
+
+  main > div:nth-child(2) > div > p {
+    font-size: 10px;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
