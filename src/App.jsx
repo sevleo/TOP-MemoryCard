@@ -9,10 +9,10 @@ function App() {
   const url = "https://pokeapi.co/api/v2/pokemon/?limit=649";
 
   // Number of pokemons used in a single game
-  const setSize = 20;
+  const setSize = 6;
 
   // Number of pokemons displayed in a round
-  const roundSize = 8;
+  const roundSize = 4;
 
   // A subset of pokemons for the game
   // Stripped
@@ -41,9 +41,13 @@ function App() {
   // Controlling start game
   const [showGameboard, setShowGameboard] = useState(false);
 
+  // Controlling buttons
+  const [showButtons, setShowButtons] = useState(true);
+
   const startGame = () => {
     setShowGameboard(true);
     setClickable(true);
+    setShowButtons(false);
   };
 
   const logPokemons = () => {
@@ -58,8 +62,12 @@ function App() {
     <>
       <main>
         <div className="mb-2.5 flex h-24 justify-center">
-          <Button onClick={startGame} buttonName="Start Game" />
-          <Button onClick={logPokemons} buttonName="Log" />
+          {showButtons ? (
+            <>
+              <Button onClick={startGame} buttonName="Start Game" />
+              <Button onClick={logPokemons} buttonName="Log" />
+            </>
+          ) : null}
         </div>
         <PokeAPI
           url={url}
@@ -77,6 +85,7 @@ function App() {
             roundSize={roundSize}
             setSize={setSize}
             setRoundPokemonSet={setRoundPokemonSet}
+            setShowButtons={setShowButtons}
           />
         ) : null}
       </main>
