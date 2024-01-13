@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import generateRandomPokemonSet from "./generateRandomPokemonSet";
 
-export default function PokeAPI({ url, setSize, setGamePokemonSet }) {
+export default function PokeAPI({
+  url,
+  setSize,
+  setGamePokemonSet,
+  fetchData,
+}) {
   // All pokemons from API
   const [pokemonsCatalog, setPokemonsCatalog] = useState([]);
 
@@ -21,7 +26,7 @@ export default function PokeAPI({ url, setSize, setGamePokemonSet }) {
       }
     };
     fetchData();
-  }, [url]);
+  }, [fetchData]);
 
   // When pokemonsCatalog are fetched, select random pokemons for the game
   useEffect(() => {

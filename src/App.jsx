@@ -7,6 +7,7 @@ import generateRandomPokemonSet from "./components/generateRandomPokemonSet";
 
 function App() {
   const url = "https://pokeapi.co/api/v2/pokemon/?limit=649";
+  const [fetchData, setFetchData] = useState(true);
 
   // Number of pokemons used in a single game
   const setSize = 6;
@@ -73,6 +74,7 @@ function App() {
           url={url}
           setSize={setSize}
           setGamePokemonSet={setGamePokemonSet}
+          fetchData={fetchData}
         />
         {drawBoardAllowed ? (
           <Gameboard
@@ -86,6 +88,8 @@ function App() {
             setSize={setSize}
             setRoundPokemonSet={setRoundPokemonSet}
             setShowButtons={setShowButtons}
+            setFetchData={setFetchData}
+            fetchData={fetchData}
           />
         ) : null}
       </main>
