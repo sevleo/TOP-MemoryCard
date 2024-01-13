@@ -4,6 +4,7 @@ import Gameboard from "./components/Gameboard";
 import Button from "./components/Button";
 import "./index.css";
 import generateRandomPokemonSet from "./components/generateRandomPokemonSet";
+import ScoreCounter from "./components/ScoreCounter.jsx";
 
 function App() {
   const url = "https://pokeapi.co/api/v2/pokemon/?limit=649";
@@ -21,6 +22,9 @@ function App() {
 
   // A subset of pokemons for the current round
   const [roundPokemonSet, setRoundPokemonSet] = useState([]);
+
+  const [roundScoreCount, setRoundScoreCount] = useState(0);
+  const [gameScoreCount, setGameScoreCount] = useState(0);
 
   // Generate a subset of pokemons for the first round
   useEffect(() => {
@@ -49,6 +53,7 @@ function App() {
     setShowGameboard(true);
     setClickable(true);
     setShowButtons(false);
+    setRoundScoreCount(0);
   };
 
   const logPokemons = () => {
@@ -69,7 +74,14 @@ function App() {
               <Button onClick={logPokemons} buttonName="Log" />
             </>
           ) : null}
+          <div className="counters">
+            <ScoreCounter
+              roundScore={roundScoreCount}
+              gameScore={gameScoreCount}
+            />
+          </div>
         </div>
+
         <PokeAPI
           url={url}
           setSize={setSize}
@@ -90,6 +102,10 @@ function App() {
             setShowButtons={setShowButtons}
             setFetchData={setFetchData}
             fetchData={fetchData}
+            roundScoreCount={roundScoreCount}
+            setRoundScoreCount={setRoundScoreCount}
+            gameScoreCount={gameScoreCount}
+            setGameScoreCount={setGameScoreCount}
           />
         ) : null}
       </main>

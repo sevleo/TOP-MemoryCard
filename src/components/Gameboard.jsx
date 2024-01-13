@@ -12,6 +12,10 @@ export default function Gameboard({
   setShowButtons,
   setFetchData,
   fetchData,
+  setRoundScoreCount,
+  roundScoreCount,
+  setGameScoreCount,
+  gameScoreCount,
 }) {
   roundPokemonSet.forEach((pokemon) => {
     pokemon.seen = true;
@@ -24,7 +28,11 @@ export default function Gameboard({
         setFetchData(!fetchData);
         setShowButtons(true);
         setClickable(false);
+        if (gameScoreCount < roundScoreCount) {
+          setGameScoreCount(roundScoreCount);
+        }
       } else {
+        setRoundScoreCount(roundScoreCount + 1);
         clickedPokemon.selected = true;
         setShowGameboard(false);
         setClickable(false);
@@ -92,6 +100,10 @@ export default function Gameboard({
           setRoundPokemonSet(shuffledPokemonSet);
         } else {
           console.log("no more pokemons! you beat the game");
+          setRoundScoreCount(roundScoreCount + 1);
+          if (gameScoreCount < roundScoreCount) {
+            setGameScoreCount(roundScoreCount + 1);
+          }
           setFetchData(!fetchData);
           setShowButtons(true);
           setClickable(false);
