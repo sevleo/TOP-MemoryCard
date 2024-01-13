@@ -7,7 +7,6 @@ This is a memory card game which I developed to better my react and api skills.
 - [Demo](#demo)
 - [Technologies](#technologies-used)
 - [How To Play](#how-to-play)
-- [Known Issues](#known-issues)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -27,10 +26,6 @@ You can view the app at [Memory Card Demo](https://roaring-pithivier-8980ac.netl
 ## How To Play
 
 - Select pokemons which you have not selected previously
-
-## Known Issues
-
-- Not fully optimized for mobile screen but still playable
 
 ## Contributing
 
