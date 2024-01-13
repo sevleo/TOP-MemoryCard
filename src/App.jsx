@@ -11,10 +11,10 @@ function App() {
   const [fetchData, setFetchData] = useState(true);
 
   // Number of pokemons used in a single game
-  const setSize = 6;
+  const setSize = 50;
 
   // Number of pokemons displayed in a round
-  const roundSize = 4;
+  const roundSize = 8;
 
   // A subset of pokemons for the game
   // Stripped
@@ -67,11 +67,11 @@ function App() {
   return (
     <>
       <main>
-        <div className="mb-2.5 flex h-24 justify-center">
+        <div className="mb-2.5 flex h-24 items-center justify-center gap-2">
           {showButtons ? (
             <>
               <Button onClick={startGame} buttonName="Start Game" />
-              <Button onClick={logPokemons} buttonName="Log" />
+              {/* <Button onClick={logPokemons} buttonName="Log" /> */}
             </>
           ) : null}
           <div className="counters">

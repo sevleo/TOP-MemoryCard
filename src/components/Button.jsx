@@ -2,5 +2,9 @@ export default function Button({ onClick, buttonName }) {
   function handleButtonClick() {
     onClick();
   }
-  return <button onClick={handleButtonClick}>{buttonName}</button>;
+  return (
+    <button className="bg-sky-600" onClick={handleButtonClick}>
+      {buttonName}
+    </button>
+  );
 }

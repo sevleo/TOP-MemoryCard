@@ -16,6 +16,7 @@ export default function Gameboard({
   roundScoreCount,
   setGameScoreCount,
   gameScoreCount,
+  roundSize,
 }) {
   roundPokemonSet.forEach((pokemon) => {
     pokemon.seen = true;
@@ -24,7 +25,7 @@ export default function Gameboard({
   function handleCardClick(clickedPokemon) {
     if (clickable) {
       if (clickedPokemon.selected === true) {
-        console.log("lost!");
+        // console.log("lost!");
         setFetchData(!fetchData);
         setShowButtons(true);
         setClickable(false);
@@ -51,7 +52,7 @@ export default function Gameboard({
 
         if (newPokemons.length > 0) {
           const randomNewCards = generateRandomPokemonSet(
-            1,
+            2,
             newPokemons.length,
             newPokemons
           );
@@ -77,7 +78,7 @@ export default function Gameboard({
           });
 
           const randomSeenCards = generateRandomPokemonSet(
-            2,
+            roundSize - 3,
             seenPokemons.length,
             seenPokemons
           );
@@ -99,7 +100,7 @@ export default function Gameboard({
 
           setRoundPokemonSet(shuffledPokemonSet);
         } else {
-          console.log("no more pokemons! you beat the game");
+          // console.log("no more pokemons! you beat the game");
           setRoundScoreCount(roundScoreCount + 1);
           if (gameScoreCount < roundScoreCount) {
             setGameScoreCount(roundScoreCount + 1);
@@ -115,7 +116,7 @@ export default function Gameboard({
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-2 ">
+      <div className="ml-auto mr-auto flex w-3/4 flex-wrap justify-center gap-2 ">
         {roundPokemonSet.map((pokemon) => (
           <Card
             key={pokemon.key}
